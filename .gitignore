@@ -118,3 +118,5 @@ run/
 !gradle-wrapper.jar
 build/tmp
 build/resources
+build/kotlin
+build/classes
