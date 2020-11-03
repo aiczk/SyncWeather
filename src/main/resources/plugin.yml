@@ -4,3 +4,9 @@ main: com.github.aiczk.syncweather.SyncWeather
 api-version: 1.16
 authors: [ aiczk ]
 description: A plug-in that matches the local weather in Japan with the weather in Minecraft.
+
+commands:
+  updateWeather:
+    usage: get-json
+    aliases:
+      - sw-uw
