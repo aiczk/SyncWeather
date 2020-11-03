@@ -28,7 +28,7 @@ object UpdateWeather : CommandExecutor {
     //todo: async
     private fun getRawWeatherData(args: Array<out String>): String? {
 
-        if(args.size < 1 || args.size > 1)
+        if(args.size < 0 || args.size > 1)
             return null
 
         val url = URL("https://jjwd.info/api/v2/stations/search?address=${args[1]}")
