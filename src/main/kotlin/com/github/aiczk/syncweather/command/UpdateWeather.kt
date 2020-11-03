@@ -15,6 +15,9 @@ object UpdateWeather : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         getWeatherJson(args)?.let {
             sender.sendMessage(it)
+
+            sender.sendMessage(args[0])
+            sender.sendMessage(args[1])
         } ?: sender.sendMessage("Missing arguments.")
 
         return true;
