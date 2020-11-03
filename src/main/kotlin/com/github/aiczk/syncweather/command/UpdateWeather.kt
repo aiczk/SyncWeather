@@ -31,7 +31,7 @@ object UpdateWeather : CommandExecutor {
         if(args.size < 0 || args.size > 1)
             return null
 
-        val url = URL("https://jjwd.info/api/v2/stations/search?address=${args[1]}")
+        val url = URL("https://jjwd.info/api/v2/stations/search?address=${args[0]}")
         val connection = url.openConnection() as HttpURLConnection
         connection.requestMethod = "GET"
         connection.connect()
