@@ -1,17 +1,12 @@
 package com.github.aiczk.syncweather.command
 
 import com.github.aiczk.syncweather.command.json.WeatherInfo
+import com.github.aiczk.syncweather.util.HttpAccess
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
-import java.net.URLClassLoader
-
 
 object UpdateWeather : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
@@ -32,20 +27,7 @@ object UpdateWeather : CommandExecutor {
         if(args.size < 0 || args.size > 1)
             return null
 
-        val url = URL("https://jjwd.info/api/v2/stations/search?address=${args[0]}")
-        val loader = URLClassLoader(arrayOf(url))
-        val connection = loader.urLs[0].openConnection() as HttpURLConnection
-        connection.requestMethod = "GET"
-        connection.connect()
-
-        val bufferedReader = BufferedReader(InputStreamReader(connection.inputStream))
-        val stringBuilder = StringBuilder()
-        bufferedReader.forEachLine { stringBuilder.append(it) }
-
-        bufferedReader.close()
-        connection.disconnect()
-
-        return stringBuilder.toString()
+        return HttpAccess().getText("https://jjwd.info/api/v2/stations/search?address=${args[0]}")
     }
 
     private fun rawWeatherDataToJson(rawData: String): WeatherInfo? {
