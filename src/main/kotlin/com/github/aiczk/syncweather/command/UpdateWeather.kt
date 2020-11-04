@@ -8,15 +8,16 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.lang.StringBuilder
 import java.net.HttpURLConnection
 import java.net.URL
+import java.net.URLClassLoader
+
 
 object UpdateWeather : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
 
         getRawWeatherData(args)?.let {
-            Json.decodeFromString<WeatherInfo>(it)
+            rawWeatherDataToJson(it)
         } ?.let {
             val precip1h = it.stations[0].preall.precip_1h
             sender.sendMessage(precip1h.toString())
@@ -32,7 +33,8 @@ object UpdateWeather : CommandExecutor {
             return null
 
         val url = URL("https://jjwd.info/api/v2/stations/search?address=${args[0]}")
-        val connection = url.openConnection() as HttpURLConnection
+        val loader = URLClassLoader(arrayOf(url))
+        val connection = loader.urLs[0].openConnection() as HttpURLConnection
         connection.requestMethod = "GET"
         connection.connect()
 
