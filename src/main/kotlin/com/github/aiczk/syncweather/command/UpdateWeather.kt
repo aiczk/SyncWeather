@@ -19,7 +19,7 @@ object UpdateWeather : CommandExecutor {
                 getRawWeatherData(args)?.let {
                     rawWeatherDataToJson(it)
                 } ?.let {
-                    val precip1h = it.stations[0].preall.precip_1h
+                    val precip1h = it.stations[0].preall.precip_daily
                     sender.sendMessage(precip1h.toString())
                 } ?: sender.sendMessage("Missing Arguments.")
             })
