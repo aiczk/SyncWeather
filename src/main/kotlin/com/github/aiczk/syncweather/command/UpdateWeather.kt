@@ -1,27 +1,34 @@
 package com.github.aiczk.syncweather.command
 
+import com.github.aiczk.syncweather.SyncWeather
 import com.github.aiczk.syncweather.command.json.WeatherInfo
 import com.github.aiczk.syncweather.util.HttpAccess
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
+import org.bukkit.util.Consumer
 
 object UpdateWeather : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
 
-        getRawWeatherData(args)?.let {
-            rawWeatherDataToJson(it)
-        } ?.let {
-            val precip1h = it.stations[0].preall.precip_1h
-            sender.sendMessage(precip1h.toString())
-        } ?: sender.sendMessage("Missing Arguments.")
+        SyncWeather.instance?.let { it ->
+
+            Bukkit.getScheduler().runTaskAsynchronously(it, Runnable {
+                getRawWeatherData(args)?.let {
+                    rawWeatherDataToJson(it)
+                } ?.let {
+                    val precip1h = it.stations[0].preall.precip_1h
+                    sender.sendMessage(precip1h.toString())
+                } ?: sender.sendMessage("Missing Arguments.")
+            })
+        }
 
         return true;
     }
 
-    //todo: async
     private fun getRawWeatherData(args: Array<out String>): String? {
 
         if(args.size < 0 || args.size > 1)

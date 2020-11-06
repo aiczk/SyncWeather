@@ -6,7 +6,6 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 class SyncWeather : JavaPlugin() {
-
     companion object {
         var instance: SyncWeather? = null
             private set;
