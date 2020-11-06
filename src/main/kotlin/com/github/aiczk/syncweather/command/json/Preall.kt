@@ -17,9 +17,9 @@ data class Preall(
     @SerialName("precip_12h")
     val precip12h: Int?,
     @SerialName("precip_12h_daily_max")
-    val precip12hDailyMax: Int?,
+    val precip12hDailyMax: Double?,
     @SerialName("precip_12h_daily_max_q")
-    val precip12hDailyMaxQ: Int?,
+    val precip12hDailyMaxQ: Double?,
     @SerialName("precip_12h_new_record_in_decade")
     val precip12hNewRecordInDecade: Int?,
     @SerialName("precip_12h_new_record_month")
@@ -29,9 +29,9 @@ data class Preall(
     @SerialName("precip_1h")
     val precip1h: Int?,
     @SerialName("precip_1h_daily_max")
-    val precip1hDailyMax: Int?,
+    val precip1hDailyMax: Double?,
     @SerialName("precip_1h_daily_max_q")
-    val precip1hDailyMaxQ: Int?,
+    val precip1hDailyMaxQ: Double?,
     @SerialName("precip_1h_new_record_in_decade")
     val precip1hNewRecordInDecade: Int?,
     @SerialName("precip_1h_new_record_month")
@@ -41,9 +41,9 @@ data class Preall(
     @SerialName("precip_24h")
     val precip24h: Int?,
     @SerialName("precip_24h_daily_max")
-    val precip24hDailyMax: Int?,
+    val precip24hDailyMax: Double?,
     @SerialName("precip_24h_daily_max_q")
-    val precip24hDailyMaxQ: Int?,
+    val precip24hDailyMaxQ: Double?,
     @SerialName("precip_24h_new_record_in_decade")
     val precip24hNewRecordInDecade: Int?,
     @SerialName("precip_24h_new_record_month")
@@ -53,9 +53,9 @@ data class Preall(
     @SerialName("precip_3h")
     val precip3h: Int?,
     @SerialName("precip_3h_daily_max")
-    val precip3hDailyMax: Int?,
+    val precip3hDailyMax: Double?,
     @SerialName("precip_3h_daily_max_q")
-    val precip3hDailyMaxQ: Int?,
+    val precip3hDailyMaxQ: Double?,
     @SerialName("precip_3h_new_record_in_decade")
     val precip3hNewRecordInDecade: Int?,
     @SerialName("precip_3h_new_record_month")
@@ -65,9 +65,9 @@ data class Preall(
     @SerialName("precip_48h")
     val precip48h: Int?,
     @SerialName("precip_48h_daily_max")
-    val precip48hDailyMax: Int?,
+    val precip48hDailyMax: Double?,
     @SerialName("precip_48h_daily_max_q")
-    val precip48hDailyMaxQ: Int?,
+    val precip48hDailyMaxQ: Double?,
     @SerialName("precip_48h_new_record_in_decade")
     val precip48hNewRecordInDecade: Int?,
     @SerialName("precip_48h_new_record_month")
@@ -77,9 +77,9 @@ data class Preall(
     @SerialName("precip_6h")
     val precip6h: Int?,
     @SerialName("precip_6h_daily_max")
-    val precip6hDailyMax: Int?,
+    val precip6hDailyMax: Double?,
     @SerialName("precip_6h_daily_max_q")
-    val precip6hDailyMaxQ: Int?,
+    val precip6hDailyMaxQ: Double?,
     @SerialName("precip_6h_new_record_in_decade")
     val precip6hNewRecordInDecade: Int?,
     @SerialName("precip_6h_new_record_month")
@@ -89,9 +89,9 @@ data class Preall(
     @SerialName("precip_72h")
     val precip72h: Int?,
     @SerialName("precip_72h_daily_max")
-    val precip72hDailyMax: Int?,
+    val precip72hDailyMax: Double?,
     @SerialName("precip_72h_daily_max_q")
-    val precip72hDailyMaxQ: Int?,
+    val precip72hDailyMaxQ: Double?,
     @SerialName("precip_72h_new_record_in_decade")
     val precip72hNewRecordInDecade: Int?,
     @SerialName("precip_72h_new_record_month")
