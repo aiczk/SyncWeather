@@ -3,7 +3,7 @@ package com.github.aiczk.syncweather.command.json
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class WeatherInfo(
+data class JJWD(
     val about: String,
     val author: String,
     val datasource: String,
