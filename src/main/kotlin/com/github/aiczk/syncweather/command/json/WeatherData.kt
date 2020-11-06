@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class JJWD(
+data class WeatherData(
     @SerialName("about")
     val about: String?,
     @SerialName("author")

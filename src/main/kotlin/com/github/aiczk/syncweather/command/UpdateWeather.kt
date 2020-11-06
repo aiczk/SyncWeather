@@ -1,7 +1,7 @@
 package com.github.aiczk.syncweather.command
 
 import com.github.aiczk.syncweather.SyncWeather
-import com.github.aiczk.syncweather.command.json.JJWD
+import com.github.aiczk.syncweather.command.json.WeatherData
 import com.github.aiczk.syncweather.util.HttpAccess
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -36,7 +36,7 @@ object UpdateWeather : CommandExecutor {
         return HttpAccess().getText("https://jjwd.info/api/v2/stations/search?address=${args[0]}")
     }
 
-    private fun rawWeatherDataToJson(rawData: String): JJWD? {
-        return Json { ignoreUnknownKeys = true }.decodeFromString<JJWD>(rawData)
+    private fun rawWeatherDataToJson(rawData: String): WeatherData? {
+        return Json { ignoreUnknownKeys = true }.decodeFromString<WeatherData>(rawData)
     }
 }

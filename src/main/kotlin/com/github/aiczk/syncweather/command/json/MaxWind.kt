@@ -17,43 +17,43 @@ data class MaxWind(
     @SerialName("max_wind_daily_dir_q")
     val maxWindDailyDirQ: Int?,
     @SerialName("max_wind_daily_hour")
-    val maxWindDailyHour: Int?,
+    val maxWindDailyHour: Double?,
     @SerialName("max_wind_daily_minute")
-    val maxWindDailyMinute: Int?,
+    val maxWindDailyMinute: Double?,
     @SerialName("max_wind_daily_q")
     val maxWindDailyQ: Int?,
     @SerialName("max_wind_daily_time_q")
     val maxWindDailyTimeQ: Int?,
     @SerialName("max_wind_monthly_record")
-    val maxWindMonthlyRecord: Int?,
+    val maxWindMonthlyRecord: Double?,
     @SerialName("max_wind_monthly_record_day")
-    val maxWindMonthlyRecordDay: Int?,
+    val maxWindMonthlyRecordDay: Double?,
     @SerialName("max_wind_monthly_record_dir")
     val maxWindMonthlyRecordDir: String?,
     @SerialName("max_wind_monthly_record_dir_q")
     val maxWindMonthlyRecordDirQ: Int?,
     @SerialName("max_wind_monthly_record_month")
-    val maxWindMonthlyRecordMonth: Int?,
+    val maxWindMonthlyRecordMonth: Double?,
     @SerialName("max_wind_monthly_record_q")
     val maxWindMonthlyRecordQ: Int?,
     @SerialName("max_wind_monthly_record_year")
-    val maxWindMonthlyRecordYear: Int?,
+    val maxWindMonthlyRecordYear: Double?,
     @SerialName("max_wind_record")
-    val maxWindRecord: Int?,
+    val maxWindRecord: Double?,
     @SerialName("max_wind_record_day")
-    val maxWindRecordDay: Int?,
+    val maxWindRecordDay: Double?,
     @SerialName("max_wind_record_dir")
     val maxWindRecordDir: String?,
     @SerialName("max_wind_record_dir_q")
     val maxWindRecordDirQ: Int?,
     @SerialName("max_wind_record_month")
-    val maxWindRecordMonth: Int?,
+    val maxWindRecordMonth: Double?,
     @SerialName("max_wind_record_q")
     val maxWindRecordQ: Int?,
     @SerialName("max_wind_record_year")
-    val maxWindRecordYear: Int?,
+    val maxWindRecordYear: Double?,
     @SerialName("max_wind_start_year")
-    val maxWindStartYear: Int?,
+    val maxWindStartYear: Double?,
     @SerialName("minute")
     val minute: Int?,
     @SerialName("month")
@@ -61,9 +61,9 @@ data class MaxWind(
     @SerialName("updatedAt")
     val updatedAt: String?,
     @SerialName("wind_new_record_in_decade")
-    val windNewRecordInDecade: Int?,
+    val windNewRecordInDecade: Double?,
     @SerialName("wind_new_record_month")
-    val windNewRecordMonth: Int?,
+    val windNewRecordMonth: Double?,
     @SerialName("year")
     val year: Int?
 )
