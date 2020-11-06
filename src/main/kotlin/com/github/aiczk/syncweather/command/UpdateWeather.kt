@@ -17,11 +17,10 @@ object UpdateWeather : CommandExecutor {
             Bukkit.getScheduler().runTaskAsynchronously(it, Runnable
             {
                 getRawWeatherData(args)?.let {
-                    //rawWeatherDataToJson(it)
-                    sender.sendMessage(it)
+                    rawWeatherDataToJson(it)
                 } ?.let {
-                    //val precip1h = it.stations[0].preall.precip_1h
-                    //sender.sendMessage(precip1h.toString())
+                    val precip1h = it.stations[0].preall.precip_1h
+                    sender.sendMessage(precip1h.toString())
                 } ?: sender.sendMessage("Missing Arguments.")
             })
         }
