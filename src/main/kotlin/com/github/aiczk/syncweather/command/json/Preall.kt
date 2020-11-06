@@ -17,7 +17,7 @@ data class Preall(
     val precip_1h: Double,
     val precip_1h_daily_max: Double,
     val precip_1h_daily_max_q: Double,
-    val precip_1h_new_record_in_decade: Double,
+    val precip_1h_new_record_in_decade: Double?,
     val precip_1h_new_record_month: Double?,
     val precip_1h_q: Double,
     val precip_24h: Double,
