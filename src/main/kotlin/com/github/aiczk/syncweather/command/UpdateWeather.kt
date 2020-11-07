@@ -7,6 +7,7 @@ import com.github.aiczk.syncweather.util.then
 import kotlinx.coroutines.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -34,8 +35,10 @@ object UpdateWeather : CommandExecutor {
                                            |Please select the correct station name from the URL below.
                                            |https://www.jma.go.jp/jma/kishou/know/amedas/ame_master.pdf""".trimMargin())
 
-                it.server.worlds[0].setStorm(isStorm)
-                it.server.worlds[0].isThundering = isThundering
+                Bukkit.getScheduler().runTask(it, Runnable {
+                    it.server.worlds[0].setStorm(isStorm)
+                    it.server.worlds[0].isThundering = isThundering
+                })
             }
         }
 
