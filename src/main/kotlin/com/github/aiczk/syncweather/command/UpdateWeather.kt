@@ -20,7 +20,7 @@ object UpdateWeather : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         SyncWeather.instance?.let { it ->
             runBlocking {
-                val syncTask = launch {
+                launch {
                     Bukkit.getScheduler().runTaskAsynchronously(it, Runnable
                     {
                         val locale = it.config.getString("SyncWeather-Locale")!!
@@ -38,16 +38,14 @@ object UpdateWeather : CommandExecutor {
                         } ?: sender.sendMessage("""Error: Observatory $locale does not exist.
                                            |Please select the correct station name from the URL below.
                                            |https://www.jma.go.jp/jma/kishou/know/amedas/ame_master.pdf""".trimMargin())
-                    })
 
-                    sender.sendMessage("ASYNC!")
+                        sender.sendMessage("ASYNC!")
+                    })
                 }
 
-                syncTask.join()
                 it.server.worlds[0].setStorm(isStorm)
                 it.server.worlds[0].isThundering = isThundering
-
-                sender.sendMessage("SYNC!")
+                sender.sendMessage("SYNC! IsStorm: $isStorm isThundering: $isThundering")
             }
         }
 
