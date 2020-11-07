@@ -33,11 +33,12 @@ object UpdateWeather : CommandExecutor {
                 } ?: sender.sendMessage("""Error: Observatory $locale does not exist.
                                            |Please select the correct station name from the URL below.
                                            |https://www.jma.go.jp/jma/kishou/know/amedas/ame_master.pdf""".trimMargin())
-            })
 
-            SyncWeather.instance?.let {
+                sender.sendMessage("HOGE!")
+            }).run {
                 it.server.worlds[0].setStorm(isStorm)
                 it.server.worlds[0].isThundering = isThundering
+                sender.sendMessage("HAGE!")
             }
         }
 
