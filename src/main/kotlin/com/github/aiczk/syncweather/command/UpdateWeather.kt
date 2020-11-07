@@ -20,7 +20,7 @@ object UpdateWeather : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         SyncWeather.instance?.let { it ->
             runBlocking {
-                launch {
+                val updateTask = launch {
                     Bukkit.getScheduler().runTaskAsynchronously(it, Runnable
                     {
                         val locale = it.config.getString("SyncWeather-Locale")!!
@@ -43,6 +43,7 @@ object UpdateWeather : CommandExecutor {
                     })
                 }
 
+                updateTask.join()
                 it.server.worlds[0].setStorm(isStorm)
                 it.server.worlds[0].isThundering = isThundering
                 sender.sendMessage("SYNC! IsStorm: $isStorm isThundering: $isThundering")
