@@ -25,7 +25,10 @@ object UpdateWeather : CommandExecutor {
                 weatherData?.let {
                     val precip = it.stations?.get(0)?.preall?.precip1h
                     sender.sendMessage("$precip")
-                } ?: sender.sendMessage("Error!")
+                    SyncWeather.instance?.server?.worlds?.get(0)?.setStorm(true)
+                } ?: sender.sendMessage("""Error: Observatory $locale does not exist.
+                                           |Please select the correct station name from the URL below.
+                                           |https://www.jma.go.jp/jma/kishou/know/amedas/ame_master.pdf""".trimMargin())
             })
         }
 

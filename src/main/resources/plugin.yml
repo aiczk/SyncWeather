@@ -8,5 +8,7 @@ description: A plug-in that matches the local weather in Japan with the weather 
 commands:
   UpdateWeather:
     usage: get-json
-  SetWeatherLocale:
+  SetLocale:
     usage: set locale
+  SyncState:
+    usage: syncWeather state enable / disable.

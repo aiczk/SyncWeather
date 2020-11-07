@@ -11,13 +11,10 @@ class SyncWeather : JavaPlugin() {
 
     override fun onEnable() {
         getCommand("UpdateWeather")?.setExecutor(UpdateWeather)
-        getCommand("SetWeatherLocale")?.setExecutor(SetWeatherLocale)
+        getCommand("SetLocale")?.setExecutor(SetLocale)
+        getCommand("SyncState")?.setExecutor(SyncState)
 
         instance = this;
         logger.info("SyncWeather Enabled.");
-    }
-
-    override fun onDisable() {
-        logger.info("SyncWeather Disabled");
     }
 }
