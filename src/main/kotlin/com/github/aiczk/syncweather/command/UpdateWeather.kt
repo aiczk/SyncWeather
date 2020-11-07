@@ -26,7 +26,7 @@ object UpdateWeather : CommandExecutor {
                     val weatherJson: WeatherData? = Json.decodeFromString<WeatherData>(rawData)
                     weatherJson
                 }?.let {
-                    val precip = it.stations?.get(0)?.preall?.precip1h!!
+                    val precip = it.stations?.get(0)?.preall?.precip1hDailyMax!!
                     sender.sendMessage("$precip")
                     isStorm = precip >= 1
                     isThundering = precip >= 5
