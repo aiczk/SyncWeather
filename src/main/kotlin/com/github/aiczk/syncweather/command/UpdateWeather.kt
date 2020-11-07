@@ -11,6 +11,9 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 
 object UpdateWeather : CommandExecutor {
+    var isStorm: Boolean = false
+    var isThundering: Boolean = false
+
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         SyncWeather.instance?.let { it ->
             Bukkit.getScheduler().runTaskAsynchronously(it, Runnable
@@ -23,13 +26,19 @@ object UpdateWeather : CommandExecutor {
                 val weatherData: WeatherData? = Json.decodeFromString<WeatherData>(rawData)
 
                 weatherData?.let {
-                    val precip = it.stations?.get(0)?.preall?.precip1h
+                    val precip = it.stations?.get(0)?.preall?.precip1h!!
                     sender.sendMessage("$precip")
-                    SyncWeather.instance?.server?.worlds?.get(0)?.setStorm(true)
+                    isStorm = precip >= 1
+                    isThundering = precip >= 5
                 } ?: sender.sendMessage("""Error: Observatory $locale does not exist.
                                            |Please select the correct station name from the URL below.
                                            |https://www.jma.go.jp/jma/kishou/know/amedas/ame_master.pdf""".trimMargin())
             })
+
+            SyncWeather.instance?.let {
+                it.server.worlds[0].setStorm(isStorm)
+                it.server.worlds[0].isThundering = isThundering
+            }
         }
 
         return true
