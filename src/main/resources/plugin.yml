@@ -6,7 +6,7 @@ authors: [ aiczk ]
 description: A plug-in that matches the local weather in Japan with the weather in Minecraft.
 
 commands:
-  updateWeather:
+  UpdateWeather:
     usage: get-json
-    aliases:
-      - sw-uw
+  SetWeatherLocale:
+    usage: set locale
