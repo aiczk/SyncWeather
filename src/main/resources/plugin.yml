@@ -7,8 +7,11 @@ description: A plug-in that matches the local weather in Japan with the weather 
 
 commands:
   UpdateWeather:
-    usage: get-json
+    description: Synchronizes the point information set by SetLocale.
+    usage: The specified station does not exist. Please select the correct observatory name from the URL below. https://www.jma.go.jp/jma/kishou/know/amedas/ame_master.pdf
   SetLocale:
-    usage: set locale
-  SyncState:
-    usage: syncWeather state enable / disable.
+    description: Enter the point you want to synchronize in upper or lower case letters in the first argument. This parameter is required.
+    usage: Only half-width alphabets can be specified for observation stations.
+  SyncInterval:
+    description: The first argument is an integer indicating how often UpdateWeather should be called. The second argument allows you to specify a threshold value for the duration of the rain, and the second argument allows you to specify a threshold value for the duration of the thunderstorm. These arguments are optional.
+    usage: The first argument must be expressed as an integer.

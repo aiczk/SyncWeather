@@ -20,16 +20,18 @@ object UpdateWeather : CommandExecutor {
         SyncWeather.instance?.let { it ->
             GlobalScope.launch {
                 val locale = it.config.getString("SyncWeather-Locale")!!
+                val rain = it.config.getDouble("SyncWeather-RainingThreshold")
+                val thunder = it.config.getDouble("SyncWeather-ThunderingThreshold")
                 withContext(Dispatchers.Default) {
                     val rawData = Http.get("https://jjwd.info/api/v2/stations/search?stn_name_en=$locale")
                     val weatherJson: Result<WeatherData> = runCatching { Json.decodeFromString(rawData) }
                     weatherJson.getOrNull()
                 }?.let {
-                    val precip = it.stations?.get(0)?.preall?.precip1hDailyMax!!
+                    val precip = it.stations?.getOrNull(0)?.preall?.precip1hDailyMax!!
                     sender.sendMessage((precip > 0.0) then "The amount of rainfall in $locale is ${precip}mm now." ?: "It is not raining in $locale now.")
-                    isStorm = precip >= 1
-                    isThundering = precip >= 5
-                } ?: sender.sendMessage("""Error: Observatory $locale does not exist.
+                    isStorm = precip >= rain
+                    isThundering = precip >= thunder
+                } ?: sender.sendMessage("""Observatory $locale does not exist.
                                            |Please select the correct station name from the URL below.
                                            |https://www.jma.go.jp/jma/kishou/know/amedas/ame_master.pdf""".trimMargin())
 

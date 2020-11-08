@@ -13,18 +13,16 @@ object SetLocale : CommandExecutor {
             return false
 
         val locale = args[0]
-        if(!locale.matches("^[a-zA-Z]+\$".toRegex())){
-            sender.sendMessage("Error: Only half-width alphabets can be specified for observation stations.")
+        if(!locale.matches("^[a-zA-Z]+\$".toRegex()))
             return false
-        }
 
         SyncWeather.instance?.let {
-            it.config.set("SyncWeather-Locale", args[0])
+            it.config.set("SyncWeather-Locale", locale)
             it.saveConfig()
             it.server.dispatchCommand(sender, "updateweather")
         }
 
-        sender.sendMessage("Success: Successfully configured. The current observation point is $locale.")
+        sender.sendMessage("Successfully configured. The current observation point is $locale.")
         return true
     }
 }
