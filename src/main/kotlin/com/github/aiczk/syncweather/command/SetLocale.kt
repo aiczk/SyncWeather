@@ -12,15 +12,19 @@ object SetLocale : CommandExecutor {
         if(args.size < 0 || args.size > 1)
             return false
 
-        val isKanji = args[0].matches("^[\\u44E0-\\u9FA0]+$".toRegex())
-        if(isKanji) sender.sendMessage("jp") else sender.sendMessage("en")
+        val locale = args[0]
+        if(!locale.matches("^[a-zA-Z]+\$".toRegex())){
+            sender.sendMessage("Error: Only half-width alphabets can be specified for observation stations.")
+            return false
+        }
 
         SyncWeather.instance?.let {
             it.config.set("SyncWeather-Locale", args[0])
-            it.config.set("SyncWeather-isKanji", isKanji)
             it.saveConfig()
+            it.server.dispatchCommand(sender, "updateweather")
         }
 
+        sender.sendMessage("Success: Successfully configured. The current observation point is $locale.")
         return true
     }
 }

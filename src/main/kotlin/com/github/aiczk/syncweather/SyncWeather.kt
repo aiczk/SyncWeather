@@ -12,7 +12,6 @@ class SyncWeather : JavaPlugin() {
     override fun onEnable() {
         getCommand("UpdateWeather")?.setExecutor(UpdateWeather)
         getCommand("SetLocale")?.setExecutor(SetLocale)
-        getCommand("SyncState")?.setExecutor(SyncState)
 
         instance = this;
         logger.info("SyncWeather Enabled.");

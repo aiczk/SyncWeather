@@ -13,22 +13,20 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 
 object UpdateWeather : CommandExecutor {
-    var isStorm: Boolean = false
-    var isThundering: Boolean = false
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
+        var isStorm = false
+        var isThundering = false
         SyncWeather.instance?.let { it ->
             GlobalScope.launch {
                 val locale = it.config.getString("SyncWeather-Locale")!!
-                val isKanji = it.config.getBoolean("SyncWeather-isKanji")
                 withContext(Dispatchers.Default) {
-                    val queryString = isKanji then "?stn_name_ja=$locale" ?: "?stn_name_en=$locale";
-                    val rawData = Http.get("https://jjwd.info/api/v2/stations/search$queryString")
-                    val weatherJson: WeatherData? = Json.decodeFromString<WeatherData>(rawData)
-                    weatherJson
+                    val rawData = Http.get("https://jjwd.info/api/v2/stations/search?stn_name_en=$locale")
+                    val weatherJson: Result<WeatherData> = runCatching { Json.decodeFromString(rawData) }
+                    weatherJson.getOrNull()
                 }?.let {
                     val precip = it.stations?.get(0)?.preall?.precip1hDailyMax!!
-                    sender.sendMessage("$precip")
+                    sender.sendMessage((precip > 0.0) then "The amount of rainfall in $locale is ${precip}mm now." ?: "It is not raining in $locale now.")
                     isStorm = precip >= 1
                     isThundering = precip >= 5
                 } ?: sender.sendMessage("""Error: Observatory $locale does not exist.
@@ -41,7 +39,6 @@ object UpdateWeather : CommandExecutor {
                 })
             }
         }
-
         return true
     }
 }
