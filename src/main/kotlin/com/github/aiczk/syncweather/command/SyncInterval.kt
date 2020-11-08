@@ -15,7 +15,7 @@ object SyncInterval : CommandExecutor {
         if(args.size < 0)
             return false
 
-        val minute = args[0].toLongOrNull() ?: return false
+        val minute = args[0].toIntOrNull() ?: return false
         val rainingThreshold = args[1].toDoubleOrNull() ?: 1.0
         val thunderingThreshold = args[2].toDoubleOrNull() ?: 5.0
 
@@ -24,7 +24,7 @@ object SyncInterval : CommandExecutor {
 
         //call
         SyncWeather.instance?.let {
-            taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(it, { it.server.dispatchCommand(sender, "updateweather") }, 0, 1200 * minute)
+            taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(it, { it.server.dispatchCommand(sender, "updateweather") }, 0, 1200L * minute)
             it.config.set("SyncWeather-RainingThreshold", rainingThreshold)
             it.config.set("SyncWeather-ThunderingThreshold", thunderingThreshold)
             it.saveConfig()
