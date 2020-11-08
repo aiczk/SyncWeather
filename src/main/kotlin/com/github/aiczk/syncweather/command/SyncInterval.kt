@@ -19,6 +19,8 @@ object SyncInterval : CommandExecutor {
         val rainingThreshold = args[1].toDoubleOrNull() ?: 1.0
         val thunderingThreshold = args[2].toDoubleOrNull() ?: 5.0
 
+        sender.sendMessage("Minute: $minute Rain: $rainingThreshold Thunder: $thunderingThreshold")
+
         if(taskId == -1)
             Bukkit.getScheduler().cancelTask(taskId)
 
