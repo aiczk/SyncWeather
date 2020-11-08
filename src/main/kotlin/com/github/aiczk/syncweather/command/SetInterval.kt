@@ -6,7 +6,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 
-object SyncInterval : CommandExecutor {
+object SetInterval : CommandExecutor {
 
     private var taskId = -1
 
@@ -18,8 +18,6 @@ object SyncInterval : CommandExecutor {
         val minute = args[0].toIntOrNull() ?: return false
         val rainingThreshold = args[1].toDoubleOrNull() ?: 1.0
         val thunderingThreshold = args[2].toDoubleOrNull() ?: 5.0
-
-        sender.sendMessage("Minute: $minute Rain: $rainingThreshold Thunder: $thunderingThreshold")
 
         if(taskId == -1)
             Bukkit.getScheduler().cancelTask(taskId)

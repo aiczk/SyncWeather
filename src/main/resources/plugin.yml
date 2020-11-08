@@ -12,6 +12,6 @@ commands:
   SetLocale:
     description: Enter the point you want to synchronize in upper or lower case letters in the first argument. This parameter is required.
     usage: Only half-width alphabets can be specified for observation stations.
-  SyncInterval:
+  SetInterval:
     description: The first argument is an integer indicating how often UpdateWeather should be called. The second argument allows you to specify a threshold value for the duration of the rain, and the second argument allows you to specify a threshold value for the duration of the thunderstorm. These arguments are optional.
     usage: The first argument must be expressed as an integer.
